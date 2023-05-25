@@ -8,15 +8,4 @@ import { TaskService } from './task.service';
 })
 export class AppComponent {
   title = 'todolist-angular';
-  tasks: any = []
-
-  constructor(private taskService: TaskService) { }
-
-  ngOnInit() {
-    this.tasks = this.taskService.getTasks();
-  }
-
-  ngDoCheck() {
-    this.tasks = this.taskService.getTasks();
-  }
 }
