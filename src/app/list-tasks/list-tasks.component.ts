@@ -1,22 +1,23 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-list-tasks',
   templateUrl: './list-tasks.component.html',
   styleUrls: ['./list-tasks.component.css'],
 })
-export class ListTasksComponent{
+export class ListTasksComponent {
+  @Input() tasks: any[] = [];
+  tasksPending: any[] = [];
+  tasksFinish: any[] = [];
 
-  @Input() tasks: string[] | undefined;
-  @Input() tasksFinish: string[] | undefined;
-  @Input() tasksPending:string[] | undefined;
-  @Output() delete: EventEmitter<string> = new EventEmitter<string>();
-  @Output() update: EventEmitter<string> = new EventEmitter<string>();
+  ngOnInit() {
+    this.tasksPending = this.tasks.filter((task) => task.status === 'pending');
+    this.tasksFinish = this.tasks.filter((task) => task.status === 'finish');
+  }
 
-  updateTask(task: string): void{
-    this.update.emit(task)
+  ngDoCheck() {
+    this.tasksPending = this.tasks.filter((task) => task.status === 'pending');
+    this.tasksFinish = this.tasks.filter((task) => task.status === 'finish');
   }
-  deleteTask(task: string): void {
-    this.delete.emit(task);
-  }
+
 }

@@ -1,14 +1,9 @@
 <div class="container full-100">
-
+  
   <app-header></app-header>
 
   <app-form-task></app-form-task>
-
-  <app-list-tasks
-    [tasksPending]="tasksPending"
-    [tasksFinish]="tasksFinish"
-    (delete)="deleteTask($event)"
-    (update)="updateTask($event)">
-  </app-list-tasks>
+  
+  <app-list-tasks [tasks]="tasks"></app-list-tasks>
 
 </div>
